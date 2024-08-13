@@ -10,10 +10,19 @@
             margin: 20px;
             max-width: 600px;
             margin: auto;
+            background-image: url('https://i.postimg.cc/13pMmQJk/Calculadora-1.png'); /* Caminho para a imagem de fundo */
+            background-size: cover; /* Faz a imagem cobrir toda a área do fundo */
+            background-position: center; /* Centraliza a imagem de fundo */
+            background-repeat: no-repeat; /* Evita que a imagem se repita */
+            color: #ffffff; /* Cor do texto padrão da página */
+        }
+        h1 {
+            color: #d13a21; /* Cor do título */
         }
         label {
             display: block;
             margin: 10px 0 5px;
+            color: #ffffff; /* Cor das labels */
         }
         input[type="text"], input[type="date"] {
             width: 100%;
@@ -21,6 +30,8 @@
             margin: 5px 0 20px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.8); /* Adiciona um fundo branco semi-transparente para melhorar a legibilidade */
+            color: #333; /* Cor do texto dentro dos campos de entrada */
         }
         button {
             padding: 10px 15px;
@@ -39,8 +50,8 @@
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            background-color: #9d2a7d;
-            color: white; /* Texto branco */
+            background-color: rgba(157, 42, 125, 0.8); /* Cor de fundo semi-transparente para a área de resultado */
+            color: #fff; /* Cor do texto dentro da área de resultado */
         }
         .result p {
             margin: 5px 0;
