@@ -50,16 +50,16 @@
 <body>
     <h1>Calculadora de Fatura Proporcional</h1>
     <form id="calcForm">
-        <label for="dataInicio">Data de Início do Plano X:</label>
+        <label for="dataInicio">Data de Início do Plano Atual:</label>
         <input type="date" id="dataInicio" required>
 
-        <label for="dataTroca">Data da Troca para o Plano Y:</label>
+        <label for="dataTroca">Data da Troca para o Plano Novo:</label>
         <input type="date" id="dataTroca" required>
 
-        <label for="valorPlanoX">Valor do Plano X (R$):</label>
+        <label for="valorPlanoX">Valor do Plano Atual (R$):</label>
         <input type="text" id="valorPlanoX" required>
 
-        <label for="valorPlanoY">Valor do Plano Y (R$):</label>
+        <label for="valorPlanoY">Valor do Plano Novo (R$):</label>
         <input type="text" id="valorPlanoY" required>
 
         <button type="button" onclick="calcularFaturaProporcional()">Calcular Valor Proporcional</button>
