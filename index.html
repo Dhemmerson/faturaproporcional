@@ -10,19 +10,19 @@
             margin: 20px;
             max-width: 600px;
             margin: auto;
-            background-image: url('https://i.postimg.cc/13pMmQJk/Calculadora-1.png'); /* Caminho para a imagem de fundo */
-            background-size: cover; /* Faz a imagem cobrir toda a área do fundo */
-            background-position: center; /* Centraliza a imagem de fundo */
-            background-repeat: no-repeat; /* Evita que a imagem se repita */
-            color: #ffffff; /* Cor do texto padrão da página */
+            background-image: url('https://i.postimg.cc/13pMmQJk/Calculadora-1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #ffffff;
         }
         h1 {
-            color: #ffffff; /* Cor do título */
+            color: #ffffff;
         }
         label {
             display: block;
             margin: 10px 0 5px;
-            color: #ffffff; /* Cor das labels */
+            color: #ffffff;
         }
         input[type="text"], input[type="date"] {
             width: 100%;
@@ -30,8 +30,8 @@
             margin: 5px 0 20px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.8); /* Adiciona um fundo branco semi-transparente para melhorar a legibilidade */
-            color: #333; /* Cor do texto dentro dos campos de entrada */
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
         }
         button {
             padding: 10px 15px;
@@ -50,8 +50,8 @@
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            background-color: rgba(248, 104, 1, 0.8); /* Cor de fundo semi-transparente para a área de resultado */
-            color: #fff; /* Cor do texto dentro da área de resultado */
+            background-color: rgba(248, 104, 1, 0.8);
+            color: #fff;
         }
         .result p {
             margin: 5px 0;
@@ -76,10 +76,28 @@
         <button type="button" onclick="calcularFaturaProporcional()">Calcular Valor Proporcional</button>
     </form>
 
+    <h2>Cálculo Proporcional de Uso do Plano</h2>
+    <form id="calcUsoForm">
+        <label for="dataInicioUso">Data de Início do Uso:</label>
+        <input type="date" id="dataInicioUso" required>
+
+        <label for="dataFimUso">Data de Fim do Uso:</label>
+        <input type="date" id="dataFimUso" required>
+
+        <label for="valorPlano">Valor do Plano (R$):</label>
+        <input type="text" id="valorPlano" required>
+
+        <button type="button" onclick="calcularUsoProporcional()">Calcular Valor Proporcional</button>
+    </form>
+
     <div class="result" id="resultado" style="display:none;">
         <p><strong>Valor Proporcional do Plano Atual:</strong> <span id="valorPlanoXProporcional"></span></p>
         <p><strong>Valor Proporcional do Novo Plano:</strong> <span id="valorPlanoYProporcional"></span></p>
         <p><strong>Valor Total Proporcional:</strong> <span id="valorTotalProporcional"></span></p>
+    </div>
+
+    <div class="result" id="resultadoUso" style="display:none;">
+        <p><strong>Valor Proporcional de Uso:</strong> <span id="valorProporcionalUso"></span></p>
     </div>
 
     <script>
@@ -108,6 +126,28 @@
             document.getElementById('valorPlanoYProporcional').textContent = `R$ ${valorProporcionalY.toFixed(2).replace('.', ',')}`;
             document.getElementById('valorTotalProporcional').textContent = `R$ ${valorTotalProporcional.toFixed(2).replace('.', ',')}`;
             document.getElementById('resultado').style.display = 'block';
+        }
+
+        function calcularUsoProporcional() {
+            const dataInicioUso = new Date(document.getElementById('dataInicioUso').value);
+            const dataFimUso = new Date(document.getElementById('dataFimUso').value);
+            const valorPlano = parseFloat(document.getElementById('valorPlano').value.replace(',', '.'));
+
+            if (isNaN(valorPlano) || !dataInicioUso || !dataFimUso) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            // Calcular os dias de uso e o valor proporcional
+            const diasNoMes = new Date(dataFimUso.getFullYear(), dataFimUso.getMonth() + 1, 0).getDate();
+            const diasUso = Math.round((dataFimUso - dataInicioUso) / (1000 * 60 * 60 * 24)) + 1;
+
+            // Calcular o valor proporcional
+            const valorProporcionalUso = valorPlano * (diasUso / diasNoMes);
+
+            // Exibir resultados
+            document.getElementById('valorProporcionalUso').textContent = `R$ ${valorProporcionalUso.toFixed(2).replace('.', ',')}`;
+            document.getElementById('resultadoUso').style.display = 'block';
         }
     </script>
 </body>
