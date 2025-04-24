@@ -16,43 +16,64 @@
             background-repeat: no-repeat;
             color: #ffffff;
         }
+
         h1 {
             color: #ffffff;
         }
+
         label {
             display: block;
             margin: 10px 0 5px;
             color: #ffffff;
         }
-        input[type="text"], input[type="date"] {
+
+        input[type="text"],
+        input[type="date"] {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             margin: 5px 0 20px;
             border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #333;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-align: right;
+            font-size: 16px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
         }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #ff8800;
+            box-shadow: 0 0 5px #ff8800;
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
         button {
             padding: 10px 15px;
             font-size: 16px;
             color: #fff;
             background-color: #d13a21;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
+
         button:hover {
             background-color: #9d2a7d;
         }
+
         .result {
             margin-top: 20px;
             padding: 10px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 8px;
             background-color: rgba(248, 104, 1, 0.8);
             color: #fff;
         }
+
         .result p {
             margin: 5px 0;
         }
@@ -112,7 +133,6 @@
                 return;
             }
 
-            // Calcular o valor proporcional para cada plano
             const diasNoMes = new Date(dataTroca.getFullYear(), dataTroca.getMonth() + 1, 0).getDate();
             const diasPlanoX = Math.round((dataTroca - dataInicio) / (1000 * 60 * 60 * 24)) + 1;
             const diasPlanoY = diasNoMes - diasPlanoX;
@@ -121,7 +141,6 @@
             const valorProporcionalY = valorPlanoY * (diasPlanoY / diasNoMes);
             const valorTotalProporcional = valorProporcionalX + valorProporcionalY;
 
-            // Exibir resultados
             document.getElementById('valorPlanoXProporcional').textContent = `R$ ${valorProporcionalX.toFixed(2).replace('.', ',')}`;
             document.getElementById('valorPlanoYProporcional').textContent = `R$ ${valorProporcionalY.toFixed(2).replace('.', ',')}`;
             document.getElementById('valorTotalProporcional').textContent = `R$ ${valorTotalProporcional.toFixed(2).replace('.', ',')}`;
@@ -138,14 +157,11 @@
                 return;
             }
 
-            // Calcular os dias de uso e o valor proporcional
             const diasNoMes = new Date(dataFimUso.getFullYear(), dataFimUso.getMonth() + 1, 0).getDate();
             const diasUso = Math.round((dataFimUso - dataInicioUso) / (1000 * 60 * 60 * 24)) + 1;
 
-            // Calcular o valor proporcional
             const valorProporcionalUso = valorPlano * (diasUso / diasNoMes);
 
-            // Exibir resultados
             document.getElementById('valorProporcionalUso').textContent = `R$ ${valorProporcionalUso.toFixed(2).replace('.', ',')}`;
             document.getElementById('resultadoUso').style.display = 'block';
         }
